@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+          crossorigin="anonymous">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" type="text/css" href={{url_for('static', filename='css/style.css')}}>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <title>Кросс-суммы</title>
+</head>
+<body onload="">
+
+    <div class="w3-container w3-center">
+		<h5 class = "w3-quarter"><a id = "user_level" class="navbar-brand" href="#">{{ level }} уровень</a></h5>
+		<h2 class = "w3-card-4 w3-half">Добро пожаловать на страницу Cross-summs, <br>&nbsp;&nbsp;&nbsp;&nbsp;{{ user }}!</h2>
+		<h5 class = "w3-quarter">
+		{% if current_user.is_authenticated %}
+			<a class="navbar-brand" href="/logout">{{ current_user.name }} <kbd>Выход</kbd><br> level {{ level }}</a>
+			{% else %}
+				<p>
+					<a class="btn btn-primary " href="/register">Зарегистрироваться</a>
+					<a class="btn btn-success" href="/login">Войти</a>
+				</p>
+			{% endif %}
+		</h5>
+		<p class="w3-cell-row">Расставьте числа так, чтобы сумма чисел вдоль каждой стрелки была одинаковой</p>
+			</p><em>двойной щелчок по числу в клетке возвращает число на место</em></p>
+			{% block content %}
+			
+			{% endblock %}
+			{% if not current_user.is_authenticated %}
+		<div class="w3-display-container w3-green" style="height:70px;width:550px;margin: auto">
+		<p class="w3-display-middle">Для продолжения и сохранения результата необходимо зарегистрироваться</p>
+		</div>
+			{% endif %}
+		<div style = "padding-top:20px">Доступные уровни:
+			<a href="/0"><span class="w3-badge w3-green badge_lev" >0</span></a>&nbsp;&nbsp;
+			<a href="/1"><span class="w3-badge w3-green badge_lev">1</span></a>&nbsp;&nbsp;
+			<a href="/2"><span class="w3-badge w3-green badge_lev">2</span></a>&nbsp;&nbsp;
+			<a href="/3"><span class="w3-badge w3-green badge_lev">3</span></a>&nbsp;&nbsp;
+		</div>
+	</div>
+<script>
+var x = $(".badge_lev");
+var y = 0{{ current_user.level }};
+console.log(y);
+for (i=0; i <= 3; i++){
+	console.log("check ", i, "parse-", parseInt($("#user_level")[0]));
+	if (parseInt(y) >= i){
+		x[i].style.display = "inline";
+	}
+	else {x[i].style.display = "none"}
+}
+</script>
+</body>
+</html>
