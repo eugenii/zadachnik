@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+	{% block content %}
+<div class="w3-cell-row" >
+	{% if level == 0 %}
+<object type="image/svg+xml" data={{ url_for("static", filename="svg/cross_summs_0.svg") }}></object>
+	{% elif level == 1 %}
+	<object type="image/svg+xml" data={{ url_for("static", filename="svg/cross_summs_1.svg") }}></object>
+	{% elif level == 2 %}
+	<object type="image/svg+xml" data={{ url_for("static", filename="svg/cross_summs_2.svg") }}></object>
+	{% else %}
+	<object type="image/svg+xml" data={{ url_for("static", filename="svg/cross_summs_3.svg") }}></object>
+	{% endif %}
+</div>
+<p id="re" onclick="show_btn()">скопируйте код и вставьте в поле ниже:<br>
+<em>или просто перетащите мышкой</em> </p><input id = "code2" type="text" size="20" style="display:inline"><button class="w3-btn w3-black" onclick="check_code()">check</button>
+{% if not current_user.is_authenticated %}
+	<a class="btn btn-primary " href="/register">надо зарегистрироваться...</a>
+{% else %}
+
+{% endif %}
+{% if current_user.is_authenticated %}
+<a id= "next_level" class="btn btn-primary " href="/level_up" style="display:none">next level</a>
+{% endif %}
+<script src={{ url_for('static', filename='js/test1.js')}}></script>
+
+
+     {% endblock %}
+

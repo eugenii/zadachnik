@@ -1,0 +1,13 @@
+h3 {
+	color: green;
+}
+.myForm {
+	width: 30%;       
+	margin: auto;
+	background-color: #dbd9c4;
+	border-radius: 20px;
+
+}
+.input_pad {
+    margin: 30px;
+}
